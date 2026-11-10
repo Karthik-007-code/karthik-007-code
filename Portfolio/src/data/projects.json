@@ -1,0 +1,30 @@
+[
+  {
+    "id": 1,
+    "title": "AI Resume Evaluator",
+    "description": "AI-powered resume evaluation based on job descriptions with automated scoring and targeted skill gap analysis.",
+    "image": "/images/resume-predictor.png",
+    "techStack": ["Python", "FastAPI", "LLM", "Prompt Engineering"],
+    "github": "https://github.com/Karthik-007-code/",
+    "liveDemo": ""
+  },
+  {
+    "id": 2,
+    "title": "Autonomous Agent Workflow Engine",
+    "description": "Multi-agent orchestration framework for autonomous task planning, tool execution, and document reasoning.",
+    "image": "",
+    "techStack": ["Python", "LangChain", "Vector DB", "Docker"],
+    "github": "https://github.com/Karthik-007-code/",
+    "liveDemo": ""
+  },
+  {
+    "id": 3,
+    "title": "Neural Semantic Search Engine",
+    "description": "High-throughput semantic retrieval engine combining dense vector embeddings and re-ranking for real-time querying.",
+    "image": "",
+    "techStack": ["PyTorch", "Hugging Face", "FastAPI", "Qdrant"],
+    "github": "https://github.com/Karthik-007-code/",
+    "liveDemo": ""
+  }
+]
+

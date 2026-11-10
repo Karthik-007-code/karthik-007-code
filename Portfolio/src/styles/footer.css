@@ -1,0 +1,113 @@
+/* ==========================================================================
+   Footer Styling - Minimalist Dark Editorial Footer
+   ========================================================================== */
+
+.footer-container {
+  width: 100%;
+  margin-top: 5rem;
+  border-top: 1px solid var(--border-default);
+  background-color: rgba(11, 11, 13, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 3rem 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.footer-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.footer-brand {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.footer-tagline {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+}
+
+.back-to-top-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.55rem 1rem;
+  border-radius: var(--radius-sm);
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-default);
+  color: var(--text-secondary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-normal);
+}
+
+.top-arrow-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: rotate(180deg);
+  transition: transform var(--transition-normal);
+}
+
+.back-to-top-btn:hover {
+  color: var(--text-primary);
+  border-color: var(--accent-border);
+  background-color: var(--bg-card-hover);
+  transform: translateY(-2px);
+}
+
+.back-to-top-btn:hover .top-arrow-icon {
+  transform: rotate(180deg) translateY(2px);
+}
+
+.footer-bottom {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 1.5rem 2rem 0;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.copyright-text {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  font-family: var(--font-mono);
+}
+
+@media (max-width: 768px) {
+  .footer-container {
+    margin-top: 3.5rem;
+    padding: 2.5rem 0 1.5rem;
+  }
+
+  .footer-content,
+  .footer-bottom {
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+
+  .footer-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+

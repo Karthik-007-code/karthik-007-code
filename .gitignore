@@ -1,0 +1,40 @@
+# =========================
+# Python / FastAPI (Backend)
+# =========================
+backend/venv/
+backend/__pycache__/
+backend/*.pyc
+backend/.pytest_cache/
+backend/dist/
+backend/build/
+backend/*.egg-info/
+
+# =========================
+# Node / React (Frontend)
+# =========================
+node_modules/
+dist/
+build/
+.vite/
+frontend/node_modules/
+frontend/dist/
+frontend/build/
+frontend/.vite/
+Portfolio/node_modules/
+Portfolio/dist/
+Portfolio/.vite/
+
+# =========================
+# Environment Variables & Secrets
+# =========================
+.env
+backend/.env
+frontend/.env
+frontend/.env.local
+
+# =========================
+# Operating System Files
+# =========================
+.DS_Store
+Thumbs.db
+*.log

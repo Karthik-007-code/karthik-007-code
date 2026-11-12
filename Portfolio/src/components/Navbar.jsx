@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react';
+import { SparklesIcon } from './Icons';
 import '../styles/navbar.css';
 
-export default function Navbar() {
+export default function Navbar({ activeView = 'portfolio', onNavigate }) {
   const [activeSection, setActiveSection] = useState('');
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -9,6 +10,11 @@ export default function Navbar() {
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 30);
+
+      if (activeView === 'chat') {
+        setActiveSection('chat');
+        return;
+      }
 
       const sections = ['about', 'projects'];
       const scrollPosition = window.scrollY + 200;
@@ -34,11 +40,34 @@ export default function Navbar() {
     handleScroll();
 
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [activeView]);
 
   const handleLinkClick = (e, targetId) => {
     e.preventDefault();
     setMobileMenuOpen(false);
+
+    if (targetId === 'chat') {
+      if (onNavigate) onNavigate('chat');
+      window.history.pushState(null, '', '#ask-karthik');
+      return;
+    }
+
+    // Navigating back to portfolio sections
+    if (activeView === 'chat') {
+      if (onNavigate) onNavigate('portfolio');
+      // Delay scrolling until view renders
+      setTimeout(() => {
+        const target = document.getElementById(targetId);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth' });
+        } else if (targetId === 'hero') {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+      }, 50);
+      window.history.pushState(null, '', targetId === 'hero' ? '#' : `#${targetId}`);
+      return;
+    }
+
     const target = document.getElementById(targetId);
     if (target) {
       target.scrollIntoView({ behavior: 'smooth' });
@@ -69,20 +98,41 @@ export default function Navbar() {
               <a
                 href="#projects"
                 onClick={(e) => handleLinkClick(e, 'projects')}
-                className={`nav-link ${activeSection === 'projects' ? 'is-active' : ''}`}
+                className={`nav-link ${activeView === 'portfolio' && activeSection === 'projects' ? 'is-active' : ''}`}
               >
                 Projects
-                {activeSection === 'projects' && <span className="active-pill" />}
+                {activeView === 'portfolio' && activeSection === 'projects' && (
+                  <span className="active-pill" />
+                )}
               </a>
             </li>
             <li className="nav-item">
               <a
                 href="#about"
                 onClick={(e) => handleLinkClick(e, 'about')}
-                className={`nav-link ${activeSection === 'about' ? 'is-active' : ''}`}
+                className={`nav-link ${activeView === 'portfolio' && activeSection === 'about' ? 'is-active' : ''}`}
               >
                 About
-                {activeSection === 'about' && <span className="active-pill" />}
+                {activeView === 'portfolio' && activeSection === 'about' && (
+                  <span className="active-pill" />
+                )}
+              </a>
+            </li>
+            <li className="nav-item">
+              <a
+                href="#ask-karthik"
+                onClick={(e) => handleLinkClick(e, 'chat')}
+                className={`nav-link ${activeView === 'chat' ? 'is-active' : ''}`}
+                style={{
+                  color: activeView === 'chat' ? 'var(--text-primary)' : 'var(--accent-light)',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '0.4rem',
+                }}
+              >
+                <SparklesIcon size={14} />
+                <span>Ask Karthik</span>
+                {activeView === 'chat' && <span className="active-pill" />}
               </a>
             </li>
           </ul>
@@ -109,7 +159,7 @@ export default function Navbar() {
               <a
                 href="#projects"
                 onClick={(e) => handleLinkClick(e, 'projects')}
-                className={`mobile-nav-link ${activeSection === 'projects' ? 'is-active' : ''}`}
+                className={`mobile-nav-link ${activeView === 'portfolio' && activeSection === 'projects' ? 'is-active' : ''}`}
               >
                 Projects
               </a>
@@ -118,9 +168,25 @@ export default function Navbar() {
               <a
                 href="#about"
                 onClick={(e) => handleLinkClick(e, 'about')}
-                className={`mobile-nav-link ${activeSection === 'about' ? 'is-active' : ''}`}
+                className={`mobile-nav-link ${activeView === 'portfolio' && activeSection === 'about' ? 'is-active' : ''}`}
               >
                 About
+              </a>
+            </li>
+            <li>
+              <a
+                href="#ask-karthik"
+                onClick={(e) => handleLinkClick(e, 'chat')}
+                className={`mobile-nav-link ${activeView === 'chat' ? 'is-active' : ''}`}
+                style={{
+                  color: 'var(--accent-light)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.45rem',
+                }}
+              >
+                <SparklesIcon size={16} />
+                <span>Ask Karthik (AI)</span>
               </a>
             </li>
           </ul>
@@ -129,4 +195,3 @@ export default function Navbar() {
     </header>
   );
 }
-
